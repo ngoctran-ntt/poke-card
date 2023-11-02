@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+        box-sizing: border-box;
+      }
+      .main {
+        background-image: url(https://akiyamahaa.github.io/poke-card/bg.jpg);
+        background-repeat: repeat;
+        background-position: center center;
+        width: 100vw;
+        display: flex;
+        flex-wrap: wrap;
+        height: 3000px;
+      }
+      .card {
+        width: 340px;
+        height: 500px;
+        padding: 16px;
+        margin: 10px;
+        border-radius: 15px;
+      }
+      .card__image-container {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 3px 3px 0 0;
+        text-align: center;
+        padding: 1em 1em 0;
+      }
+      .card__image {
+        max-height: 150px;
+      }
+      .card__stats {
+        font-weight: 300;
+        font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+        padding: 10px 0;
+        margin: auto;
+      }
+      .stats__heading {
+        padding: 0.25em 0.5em 0;
+        width: 50%;
+        font-weight: 300;
+        font-size: 13px;
+        text-align: right;
+      }
+      .stats__cell {
+        padding: 0.25em 0.5em 0;
+        width: 50%;
+        text-align: left;
+        font-weight: 400;
+      }
+      .card__container {
+        height: 300px;
+        background-color: rgba(255, 255, 255, 0.65);
+        border-radius: 0 0 3px 3px;
+        padding: 16px;
+        position: relative;
+      }
+      .card__ability {
+        display: flex;
+        text-align: left;
+        position: relative;
+        bottom: -28px;
+      }
+      .card__heading {
+        font-size: 1.25em;
+        font-weight: 700;
+        font-family: "Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+        text-align: center;
+      }
+      .card__type {
+        color: white;
+        font-family:"Open Sans Condensed", "Open Sans", helvetica, sans-serif;
+        letter-spacing:0.1em;
+        border-radius: 2px;
+        padding: 0.25em;
+        line-height: 1;
+        position: absolute;
+        top: 0;
+        right: 1em;
+        transform: translateY(-50%);
+        font-weight: 300;
+      }
+      .card__normal{
+        background: linear-gradient(110deg, #fdbb2d 0%, #3a1c71 100%); 
+        transform: rotate(-3deg);
+        transition: 0.4s;
+      }
+      .card__normal:hover{
+        transform: rotate(0deg) translateY(-20px);
+      }
+      .card__water{
+        background: linear-gradient(120deg, #1cb5e0 0%, #000851 100%);
+        transform: rotate(-4deg);
+        transition: 0.4s;
+      }
+      .card__water:hover{
+        transform: rotate(0deg) translateY(-20px);
+      }
+      .card__electric{
+        background: linear-gradient(90deg, #ffde00 34%, #e8ff99 83%);
+        transform: rotate(-5deg);
+        transition: 0.4s;
+      }
+      .card__electric:hover{
+        transform: rotate(0deg) translateY(-20px);
+      }
+      .card__fire{
+        background: linear-gradient(0deg, #c71800 10%, #fcc245 100%);
+        transform: rotate(3deg);
+        transition: 0.4s;
+      }
+      .card__fire:hover{
+        transform: rotate(0deg) translateY(-20px);
+      }
+      .card__psychic{
+        background: linear-gradient(140deg, #ffa7f9 0%, #ff2cc3 39%, #ffe3a7 100%);
+        transition: 0.4s;
+      }
+      .card__psychic:hover{
+        transform: translateY(-20px);
+      }
+      .card__dark{
+        background: linear-gradient(20deg, #191919 0%, #100b32 33%, #5c0249 100%);
+        transform: rotate(1deg);
+        transition: 0.4s;
+      }
+      .card__dark:hover{
+        transform: rotate(0deg) translateY(-20px);
+      }
+      .card__grass{
+        background: linear-gradient(140deg, #c4da3d 0%, #6e7f0e 69%, #275009 100%);
+        transform: rotate(1deg);
+        transition: 0.4s;
+      }
+      .card__grass:hover{
+        transform: rotate(0deg) translateY(-20px);
+      }
+      .card__ice{
+        background: linear-gradient(230deg, #caeaf6 0%, #a0eaf1 46%, #6fb8eb 100%);
+        transform: rotate(-1deg);
+        transition: 0.4s;
+      }
+      .card__ice:hover{
+        transform: rotate(0deg) translateY(-20px);
+      }
+      .card__fairy{
+        background: linear-gradient(45deg, #ffe6f0 0%, #ffc5e0 34%, #ffa6b9 71%, #ff8a95 100%);
+        transform: rotate(-4deg);
+        transition: 0.4s;
+      }
+      .card__fairy:hover{
+        transform: rotate(0deg) translateY(-20px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="card card__normal">
+        <div class="card__image-container">
+          <img
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/133.png"
+            class="card__image"
+          />
+        </div>
+        <figcaption class="card__container">
+          <p class="card__heading">Eevee</p>
+          <p class="card__type" style="background-color: #c08a53;">NORMAL</p>
+          <table class="card__stats">
+            <tr>
+              <th class="stats__heading">HP</th>
+              <td class="stats__cell">55</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Attack</th>
+              <td class="stats__cell">55</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Defense</th>
+              <td class="stats__cell">50</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Attack</th>
+              <td class="stats__cell">45</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Defense</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Speed</th>
+              <td class="stats__cell">55</td>
+            </tr>
+          </table>
+          <div class="card__ability">
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Run Away</h3>
+            </div>
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">HIDDEN ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Anticipation</h3>
+            </div>
+          </div>
+        </figcaption>
+      </div>
+      <div class="card card__water">
+        <div class="card__image-container">
+          <img
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/134.png"
+            class="card__image"
+          />
+        </div>
+        <figcaption class="card__container">
+          <p class="card__heading">Vaporeon</p>
+          <p class="card__type" style="background-color: #1cb5e0;">WATER</p>
+          <table class="card__stats">
+            <tr>
+              <th class="stats__heading">HP</th>
+              <td class="stats__cell">130</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Attack</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Defense</th>
+              <td class="stats__cell">60</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Attack</th>
+              <td class="stats__cell">110</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Defense</th>
+              <td class="stats__cell">95</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Speed</th>
+              <td class="stats__cell">65</td>
+            </tr>
+          </table>
+          <div class="card__ability">
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Absord</h3>
+            </div>
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">HIDDEN ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Hydration</h3>
+            </div>
+          </div>
+        </figcaption>
+      </div>
+      <div class="card card__electric">
+        <div class="card__image-container">
+          <img
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/135.png"
+            class="card__image"
+          />
+        </div>
+        <figcaption class="card__container">
+          <p class="card__heading">Joteon</p>
+          <p class="card__type" style="background-color: black;">ELECTRIC</p>
+          <table class="card__stats">
+            <tr>
+              <th class="stats__heading">HP</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Attack</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Defense</th>
+              <td class="stats__cell">60</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Attack</th>
+              <td class="stats__cell">110</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Defense</th>
+              <td class="stats__cell">95</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Speed</th>
+              <td class="stats__cell">130</td>
+            </tr>
+          </table>
+          <div class="card__ability">
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Voit Absorb</h3>
+            </div>
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">HIDDEN ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Quick Feet</h3>
+            </div>
+          </div>
+        </figcaption>
+      </div>
+      <div class="card card__fire">
+        <div class="card__image-container">
+          <img
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/136.png"
+            class="card__image"
+          />
+        </div>
+        <figcaption class="card__container">
+          <p class="card__heading">Flareon</p>
+          <p class="card__type" style="background-color: #c71800;">FIRE</p>
+          <table class="card__stats">
+            <tr>
+              <th class="stats__heading">HP</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Attack</th>
+              <td class="stats__cell">130</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Defense</th>
+              <td class="stats__cell">60</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Attack</th>
+              <td class="stats__cell">95</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Defense</th>
+              <td class="stats__cell">110</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Speed</th>
+              <td class="stats__cell">35</td>
+            </tr>
+          </table>
+          <div class="card__ability">
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Flash Fire</h3>
+            </div>
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">HIDDEN ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Guts</h3>
+            </div>
+          </div>
+        </figcaption>
+      </div>
+      <div class="card card__psychic">
+        <div class="card__image-container">
+          <img
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/196.png"
+            class="card__image"
+          />
+        </div>
+        <figcaption class="card__container">
+          <p class="card__heading">Espeon</p>
+          <p class="card__type" style="background-color: #ff2cc3;">PSYCHIC</p>
+          <table class="card__stats">
+            <tr>
+              <th class="stats__heading">HP</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Attack</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Defense</th>
+              <td class="stats__cell">60</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Attack</th>
+              <td class="stats__cell">130</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Defense</th>
+              <td class="stats__cell">95</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Speed</th>
+              <td class="stats__cell">110</td>
+            </tr>
+          </table>
+          <div class="card__ability">
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Synchronize</h3>
+            </div>
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">HIDDEN ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Magic Bounce</h3>
+            </div>
+          </div>
+        </figcaption>
+      </div>
+      <div class="card card__dark">
+        <div class="card__image-container">
+          <img
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/197.png"
+            class="card__image"
+          />
+        </div>
+        <figcaption class="card__container">
+          <p class="card__heading">Umbreon</p>
+          <p class="card__type" style="background-color: #5c0249;">DARK</p>
+          <table class="card__stats">
+            <tr>
+              <th class="stats__heading">HP</th>
+              <td class="stats__cell">95</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Attack</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Defense</th>
+              <td class="stats__cell">110</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Attack</th>
+              <td class="stats__cell">60</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Defense</th>
+              <td class="stats__cell">130</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Speed</th>
+              <td class="stats__cell">65</td>
+            </tr>
+          </table>
+          <div class="card__ability">
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Synchronize</h3>
+            </div>
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">HIDDEN ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Inner Focus</h3>
+            </div>
+          </div>
+        </figcaption>
+      </div>
+      <div class="card card__grass">
+        <div class="card__image-container">
+          <img
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/470.png"
+            class="card__image"
+          />
+        </div>
+        <figcaption class="card__container">
+          <p class="card__heading">Leafeon</p>
+          <p class="card__type" style="background-color: #6e7f0e;">GRASS</p>
+          <table class="card__stats">
+            <tr>
+              <th class="stats__heading">HP</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Attack</th>
+              <td class="stats__cell">110</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Defense</th>
+              <td class="stats__cell">130</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Attack</th>
+              <td class="stats__cell">60</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Defense</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Speed</th>
+              <td class="stats__cell">95</td>
+            </tr>
+          </table>
+          <div class="card__ability">
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Leaf Guard</h3>
+            </div>
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">HIDDEN ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Chlorophyll</h3>
+            </div>
+          </div>
+        </figcaption>
+      </div>
+      <div class="card card__ice">
+        <div class="card__image-container">
+          <img
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/471.png"
+            class="card__image"
+          />
+        </div>
+        <figcaption class="card__container">
+          <p class="card__heading">Glaceon</p>
+          <p class="card__type" style="background-color: #6fb8eb;">ICE</p>
+          <table class="card__stats">
+            <tr>
+              <th class="stats__heading">HP</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Attack</th>
+              <td class="stats__cell">60</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Defense</th>
+              <td class="stats__cell">110</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Attack</th>
+              <td class="stats__cell">130</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Defense</th>
+              <td class="stats__cell">95</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Speed</th>
+              <td class="stats__cell">65</td>
+            </tr>
+          </table>
+          <div class="card__ability">
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Snow Cloak</h3>
+            </div>
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">HIDDEN ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Ice Body</h3>
+            </div>
+          </div>
+        </figcaption>
+      </div>
+      <div class="card card__fairy">
+        <div class="card__image-container">
+          <img
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/700.png"
+            class="card__image"
+          />
+        </div>
+        <figcaption class="card__container">
+          <p class="card__heading">Sylveon</p>
+          <p class="card__type" style="background-color: #ff8a95;">FAIRY</p>
+          <table class="card__stats">
+            <tr>
+              <th class="stats__heading">HP</th>
+              <td class="stats__cell">95</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Attack</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Defense</th>
+              <td class="stats__cell">65</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Attack</th>
+              <td class="stats__cell">110</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Special Defense</th>
+              <td class="stats__cell">130</td>
+            </tr>
+            <tr>
+              <th class="stats__heading">Speed</th>
+              <td class="stats__cell">60</td>
+            </tr>
+          </table>
+          <div class="card__ability">
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Cute Charm</h3>
+            </div>
+            <div style="width: 132px; margin-top: 16px">
+              <p style="font-weight: 300; font-size: 10px">HIDDEN ABILITY</p>
+              <h3 style="font-weight: 350; font-size: 15px">Pixilate</h3>
+            </div>
+          </div>
+        </figcaption>
+      </div>
+    </div>
+  </body>
+</html>
